@@ -1,5 +1,5 @@
 ﻿# Augmentation-PyTorch-Transforms
-**Image data augmentation on-the-fly by add new class on transforms in PyTorch and torchvision.**
+**Image data augmentation on-the-fly by adding new class on transforms in PyTorch and torchvision.**
 
 > Normally, we `from torchvision import transforms` for transformation, but some specific transformations (especially for **histology** image augmentation) are missing.  
 
@@ -7,7 +7,7 @@
   
 > You can call and use it in the same form as `torchvision.transforms`. Or, you can refer to [dataAug_myTransforms.py](https://github.com/gatsby2016/Augmentation-PyTorch-Transforms/blob/master/dataAug_myTransforms.py).  
 
-> Also, you can check the actual effect of `myTransforms` for data augmentation :)  
+> Also, you can check the actual effect of [myTransforms](https://github.com/gatsby2016/Augmentation-PyTorch-Transforms/blob/master/myTransforms.py) for data augmentation :)  
 
 
 ## New transforms classes included in `myTransforms`
