@@ -56,7 +56,7 @@ Random Elastic transformation by *CV2* method on image by alpha, sigma parameter
 -- if alpha is 1, output only depends on sigma parameter;  
 -- if alpha < 1 or > 1, it zoom in or out the sigma-relevant dx, dy.  
 - sigma (float): sigma value for elastic transformation, should be $\in (0.05,0.1)$  
-- mask (PIL Image) For processing on GroundTruth of segmentation task, if not assign, set None.  
+- mask (PIL Image) For processing on GroundTruth of segmentation task, if not assign, set None. only used in `__call__` function       
 
 **Example**  
 ```python
@@ -64,10 +64,10 @@ import myTransforms
 imagename = '../data/10-05074_353_49_8178.png'
 img = Image.open(imagename) # read the image
 	
-preprocess = myTransforms.RandomElastic(alpha=2, sigma=0.06, mask=None)
+preprocess = myTransforms.RandomElastic(alpha=2, sigma=0.06)
 print(preprocess)
 	
-elasticimg = preprocess(img)
+elasticimg = preprocess(img, mask=None)
 plt.subplot(121)
 plt.imshow(img)
 plt.subplot(122)

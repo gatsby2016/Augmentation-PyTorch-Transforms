@@ -27,14 +27,14 @@ def main(img, time=0, SAVE=False):
     print(preprocess2)
     preprocess3 = myTransforms.RandomAffineCV2(alpha=0.1)  # alpha \in [0,0.15]
     print(preprocess3)
-    preprocess4 = myTransforms.RandomElastic(alpha=2, sigma=0.06, mask=None)
+    preprocess4 = myTransforms.RandomElastic(alpha=2, sigma=0.06)
     print(preprocess4)
 
     composeimg = preprocess(img)
     HEDJitterimg = preprocess1(img)
     blurimg = preprocess2(img)
     affinecvimg = preprocess3(img)
-    elasticimg = preprocess4(img)
+    elasticimg = preprocess4(img,mask=None)
 
     if SAVE:
         HEDJitterimg.save('./data/HEDJitter_' + str(time) + '.png')
@@ -65,4 +65,4 @@ if __name__ == '__main__':
     img = Image.open('./data/10-05074_353_49_8178.png') # read the image
     print('Raw image shape: ', np.array(img).shape)
     for ind in range(10):
-        main(img, time=ind, SAVE=True)
+        main(img, time=ind, SAVE=False)
