@@ -1466,14 +1466,13 @@ class RandomElastic(object):
         sigma (float): sigma value for Elastic transformation, should be \ in (0.05,0.1)
         mask (PIL Image) if not assign, set None.
     """
-    def __init__(self, alpha, sigma, mask=None):
+    def __init__(self, alpha, sigma):
         assert isinstance(alpha, numbers.Number) and isinstance(sigma, numbers.Number), \
             "alpha and sigma should be a single number."
         assert 0.05 <= sigma <= 0.1, \
             "In pathological image, sigma should be in (0.05,0.1)"
         self.alpha = alpha
         self.sigma = sigma
-        self.mask = mask
 
     @staticmethod
     def RandomElasticCV2(img, alpha, sigma, mask=None):
@@ -1498,8 +1497,8 @@ class RandomElastic(object):
         else:
             return Image.fromarray(img)
 
-    def __call__(self, img):
-        return self.RandomElasticCV2(np.array(img), self.alpha, self.sigma, self.mask)
+    def __call__(self, img, mask=None):
+        return self.RandomElasticCV2(np.array(img), self.alpha, self.sigma, mask)
 
     def __repr__(self):
         format_string = self.__class__.__name__ + '(alpha value={0})'.format(self.alpha)
