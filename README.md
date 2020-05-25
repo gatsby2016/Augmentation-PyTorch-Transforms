@@ -48,7 +48,8 @@ plt.show()
 
 	
 ### **RandomElastic**
-Random Elastic transformation by *CV2* method on image by alpha, sigma parameter.
+Random Elastic transformation by *CV2* method on image by alpha, sigma parameter.   
+**WARNING:** This transform class will spend a lot of CPU time for preprocessing.   
 
 **Args**      
 - alpha (float): alpha value for Elastic transformation, factor on dx, dy  
