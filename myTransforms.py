@@ -1421,14 +1421,13 @@ class RandomAffineCV2(object):
     """Random Affine transformation by CV2 method on image by alpha parameter.
     Args:
         alpha (float): alpha value for affine transformation
-        mask (PIL Image) if not assign, set None.
+        mask (PIL Image) in __call__, if not assign, set None.
     """
-    def __init__(self, alpha, mask=None):
+    def __init__(self, alpha):
         assert isinstance(alpha, numbers.Number), "alpha should be a single number."
         assert 0. <= alpha <= 0.15, \
             "In pathological image, alpha should be in (0,0.15), you can change in myTransform.py"
         self.alpha = alpha
-        self.mask = mask
 
     @staticmethod
     def affineTransformCV2(img, alpha, mask=None):
@@ -1450,8 +1449,8 @@ class RandomAffineCV2(object):
         else:
             return Image.fromarray(img)
 
-    def __call__(self, img):
-        return self.affineTransformCV2(np.array(img), self.alpha, self.mask)
+    def __call__(self, img, mask=None):
+        return self.affineTransformCV2(np.array(img), self.alpha, mask)
 
     def __repr__(self):
         return self.__class__.__name__ + '(alpha value={0})'.format(self.alpha)
@@ -1468,7 +1467,7 @@ class RandomElastic(object):
         if alpha is 1, output only depends on sigma parameter;
         if alpha < 1 or > 1, it zoom in or out the sigma's Relevant dx, dy.
         sigma (float): sigma value for Elastic transformation, should be \ in (0.05,0.1)
-        mask (PIL Image) if not assign, set None.
+        mask (PIL Image) in __call__, if not assign, set None.
     """
     def __init__(self, alpha, sigma):
         assert isinstance(alpha, numbers.Number) and isinstance(sigma, numbers.Number), \
